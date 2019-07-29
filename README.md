@@ -1,6 +1,6 @@
 # Terraform DigitalOcean Droplet
 
-Terraform module for provisioning a Droplet on DigitalOcean.
+Terraform module for provisioning DigitalOcean droplet(s) with sane defaults.
 
 ## Features
 
