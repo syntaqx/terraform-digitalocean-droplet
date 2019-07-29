@@ -7,9 +7,7 @@ Terraform module for provisioning DigitalOcean droplet(s) with sane defaults.
 - Asserts cloud-init is completed before resource creation completes
 - Generates a per-instance TLS keypair for SSH provisioner if none is provided
 
-## Hacks
-
-### Lifecycles
+### Lifecycle Hack
 
 Since resource lifecycles are not configurable the various permutations of a
 droplet's lifecycle states are generated into `droplet_lifecycle_hacks.tf` for
