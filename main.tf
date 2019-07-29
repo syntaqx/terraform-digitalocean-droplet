@@ -5,7 +5,7 @@ locals {
 
 resource "digitalocean_droplet" "droplet" {
   count              = local.count
-  name               = format("%s-%02d", local.name, count.index + var.count_start)
+  name               = format("%s-%02d", local.name, count.index + var.resource_count_start)
   image              = var.image
   region             = var.region
   size               = var.size
