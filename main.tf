@@ -1,25 +1,6 @@
 locals {
-  count            = max(var.resource_count, 0)
-  name             = format("%s-%s", var.name, var.region)
-  private_key      = lookup(var.connection, "private_key", "")
-  generate_keypair = local.private_key == "" && local.count > 0 && var.fallback_ssh_keypair
-}
-
-resource "tls_private_key" "droplet" {
-  count     = local.generate_keypair ? 1 : 0
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-resource "digitalocean_ssh_key" "droplet" {
-  count      = local.generate_keypair ? 1 : 0
-  name       = format("%s-%02d", local.name, count.index + var.count_start)
-  public_key = tls_private_key.droplet[count.index].public_key_openssh
-}
-
-locals {
-  ssh_keys        = concat(digitalocean_ssh_key.droplet[*].id, var.ssh_keys)
-  ssh_private_key = local.generate_keypair ? tls_private_key.droplet[0].private_key_pem : local.private_key
+  count = max(var.resource_count, 0)
+  name  = format("%s-%s", var.name, var.region)
 }
 
 resource "digitalocean_droplet" "droplet" {
@@ -36,7 +17,7 @@ resource "digitalocean_droplet" "droplet" {
   resize_disk        = true
   user_data          = var.user_data
   volume_ids         = var.volume_ids
-  ssh_keys           = local.ssh_keys
+  ssh_keys           = var.ssh_keys
 
   connection {
     host        = self.ipv4_address
@@ -44,7 +25,7 @@ resource "digitalocean_droplet" "droplet" {
     timeout     = lookup(var.connection, "timeout", "2m")
     agent       = lookup(var.connection, "agent", false)
     user        = lookup(var.connection, "user", "root")
-    private_key = local.ssh_private_key
+    private_key = lookup(var.connection, "private_key", "")
   }
 
   # https://www.packer.io/docs/other/debugging.html#issues-installing-ubuntu-packages

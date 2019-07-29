@@ -91,13 +91,11 @@ variable "fallback_ssh_keypair" {
 }
 
 variable "on_create" {
-  type        = list(string)
-  description = "List of provisioner scripts filepaths to execute on the remote host on creation"
+  description = "List of remote-exec provisioners for the host on creation"
   default     = []
 }
 
 variable "on_destroy" {
-  type        = list(string)
-  description = "List of provisioner scripts filepaths to execute on the remote host on destroy"
+  description = "List of remote-exec provisioners for the host on destroy"
   default     = []
 }

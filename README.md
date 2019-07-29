@@ -4,8 +4,8 @@ Terraform module for provisioning DigitalOcean droplet(s) with sane defaults.
 
 ## Features
 
+- Overwrites defaults to more sane usage (for my use cases at least)
 - Asserts cloud-init is completed before resource creation completes
-- Generates a per-instance TLS keypair for SSH provisioner if none is provided
 
 ## License
 
