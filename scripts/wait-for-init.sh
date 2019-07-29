@@ -11,4 +11,4 @@ until [ -f /var/lib/cloud/instance/boot-finished ]; do
   sleep 3
 done
 
-echo 'cloud-init completed, rebooting...'
+echo 'Boot cloud-init complete'
