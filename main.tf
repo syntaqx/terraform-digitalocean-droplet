@@ -1,6 +1,6 @@
 locals {
   count             = max(var.resource_count, 0)
-  count_minus_hacks = lookup(var.hack, "create_before_destroy", false) == false && lookup(var.hack, "prevent_destroy", false) == false ? local.count : 0
+  count_minus_hacks = lookup(var.lifecycle_hack, "create_before_destroy", false) == false && lookup(var.lifecycle_hack, "prevent_destroy", false) == false ? local.count : 0
   name              = format("%s-%s", var.name, var.region)
   private_key       = lookup(var.connection, "private_key", "")
 

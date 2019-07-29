@@ -97,7 +97,7 @@ variable "scripts" {
 }
 
 # Hacks to access values we're not supposed to be able to
-variable "hack" {
+variable "lifecycle_hack" {
   type = map
   default = {
     create_before_destroy = false

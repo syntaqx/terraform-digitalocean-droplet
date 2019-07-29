@@ -86,7 +86,7 @@ func main() {
 				appender = ""
 			}
 
-			count = fmt.Sprintf(`%s%slookup(var.hack, "%s", false) == %t`, count, appender, cycle, ok)
+			count = fmt.Sprintf(`%s%slookup(var.lifecycle_hack, "%s", false) == %t`, count, appender, cycle, ok)
 			hack = strings.Replace(hack, "#lifecycle_hack", fmt.Sprintf("%s = %t\n#lifecycle_hack", cycle, ok), -1)
 		}
 

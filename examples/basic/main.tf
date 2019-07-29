@@ -2,6 +2,6 @@ provider "digitalocean" {
 }
 
 module "droplet" {
-  source = "../"
+  source = "../../"
   name   = "example"
 }
