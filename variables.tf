@@ -90,17 +90,14 @@ variable "fallback_ssh_keypair" {
   default     = true
 }
 
-variable "scripts" {
+variable "on_create" {
   type        = list(string)
-  description = "List of provisioner scripts filepaths to execute on the remote host"
+  description = "List of provisioner scripts filepaths to execute on the remote host on creation"
   default     = []
 }
 
-# Hacks to access values we're not supposed to be able to
-variable "lifecycle_hack" {
-  type = map
-  default = {
-    create_before_destroy = false
-    prevent_destroy       = false
-  }
+variable "on_destroy" {
+  type        = list(string)
+  description = "List of provisioner scripts filepaths to execute on the remote host on destroy"
+  default     = []
 }
