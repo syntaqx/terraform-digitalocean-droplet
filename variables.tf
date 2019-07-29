@@ -37,7 +37,7 @@ variable "region" {
 variable "user_data" {
   type        = string
   description = "A string of the desired User Data for the Droplet"
-  default     = null
+  default     = "#!/bin/bash"
 }
 
 variable "tags" {
