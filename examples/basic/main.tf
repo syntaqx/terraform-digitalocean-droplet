@@ -12,9 +12,10 @@ resource "digitalocean_ssh_key" "example" {
 }
 
 module "example_droplet" {
-  source   = "../../"
-  name     = "example"
-  ssh_keys = [digitalocean_ssh_key.example.id]
+  source         = "../../"
+  name           = "example"
+  resource_count = 2
+  ssh_keys       = [digitalocean_ssh_key.example.id]
 
   connection = {
     private_key = tls_private_key.example.private_key_pem

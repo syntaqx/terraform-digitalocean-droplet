@@ -1,17 +1,17 @@
+variable "name" {
+  type        = string
+  description = "The Droplet resource name"
+}
+
 variable "resource_count" {
   type        = number
   description = "Number of droplet resources to create"
   default     = 1
 }
 
-variable "name" {
-  type        = string
-  description = "The Droplet name"
-}
-
-variable "count_start" {
+variable "resource_count_start" {
   type        = number
-  description = "Name counter starting number"
+  description = "Resource name suffix count.index starting number"
   default     = 1
 }
 
@@ -37,7 +37,7 @@ variable "region" {
 variable "user_data" {
   type        = string
   description = "A string of the desired User Data for the Droplet"
-  default     = "#!/bin/bash"
+  default     = null
 }
 
 variable "tags" {
@@ -79,15 +79,6 @@ variable "connection" {
     private_key = ""
     timeout     = "2m"
   }
-}
-
-# An SSH keypair is generated when none is configured so that Terraform is able
-# to use the remote-exec provisioner. If you don't need to specify a keypair
-# (ie, when using the hosts ssh agent) you can disable this.
-variable "fallback_ssh_keypair" {
-  type        = bool
-  description = "Generate an SSH keypair used as a fallback when none is configured"
-  default     = true
 }
 
 variable "on_create" {
