@@ -43,19 +43,19 @@ variable "user_data" {
 variable "tags" {
   type        = list
   description = "A list of the tags to be applied to this Droplet"
-  default     = null
+  default     = []
 }
 
 variable "ssh_keys" {
   type        = list
   description = "A list of SSH IDs or fingerprints to enable in the format [12345, 123456]"
-  default     = null
+  default     = []
 }
 
 variable "volume_ids" {
   type        = list
   description = "A list of the IDs of each block storage volume to be attached to the Droplet"
-  default     = null
+  default     = []
 }
 
 variable "connection" {
