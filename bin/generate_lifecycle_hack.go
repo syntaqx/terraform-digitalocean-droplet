@@ -39,7 +39,7 @@ func contains(s []string, e string) bool {
 
 // Couldn't be bothered to lookup how to call the SDK directly
 func terraformFmt() {
-	cmd := exec.Command("terraform", "fmt", "./..")
+	cmd := exec.Command("terraform", "fmt", "./...")
 
 	var stdout bytes.Buffer
 	cmd.Stdout = &stdout
