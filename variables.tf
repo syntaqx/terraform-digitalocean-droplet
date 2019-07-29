@@ -89,3 +89,12 @@ variable "fallback_ssh_keypair" {
   description = "Generate an SSH keypair used as a fallback when none is configured"
   default     = true
 }
+
+# Hacks to access values we're not supposed to be able to
+variable "hack" {
+  type = map
+  default = {
+    create_before_destroy = false
+    prevent_destroy       = false
+  }
+}

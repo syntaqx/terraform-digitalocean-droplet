@@ -3,10 +3,10 @@ output "droplet" {
 }
 
 output "tls_private_key" {
-  value     = tls_private_key.generated
+  value     = tls_private_key.droplet
   sensitive = true
 }
 
 output "digitalocean_ssh_key" {
-  value = digitalocean_ssh_key.generated
+  value = digitalocean_ssh_key.droplet
 }
