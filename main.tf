@@ -1,7 +1,10 @@
 locals {
-  name             = format("%s-%02d", var.name, count.index + var.count_start)
-  private_key      = lookup(var.connection, "private_key", "")
-  generate_keypair = local.private_key == "" && var.fallback_ssh_keypair
+  count       = max(var.resource_count, 0)
+  name        = format("%s-%02d", var.name, count.index + var.count_start)
+  private_key = lookup(var.connection, "private_key", "")
+
+  # Whether or not we should be generating a tls_private_key for connection
+  generate_keypair = local.private_key == "" && local.count > 0 && var.fallback_ssh_keypair
 }
 
 resource "tls_private_key" "droplet" {
@@ -22,7 +25,7 @@ locals {
 }
 
 resource "digitalocean_droplet" "droplet" {
-  count              = var.amount
+  count              = local.count
   name               = local.name
   image              = var.image
   region             = var.region

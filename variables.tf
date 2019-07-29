@@ -1,4 +1,4 @@
-variable "amount" {
+variable "resource_count" {
   type        = number
   description = "Number of droplet resources to create"
   default     = 1
