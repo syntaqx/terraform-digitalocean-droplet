@@ -58,6 +58,12 @@ variable "volume_ids" {
   default     = []
 }
 
+variable "backups" {
+  type        = bool
+  description = "Enable backups."
+  default     = false
+}
+
 variable "connection" {
   type = map
   default = {

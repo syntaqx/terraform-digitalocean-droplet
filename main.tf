@@ -7,10 +7,10 @@ resource "digitalocean_droplet" "droplet" {
   ssh_keys           = var.ssh_keys
   tags               = var.tags
   private_networking = true
-  backups            = true
   ipv6               = true
   monitoring         = true
   resize_disk        = true
+  backups            = var.backups
   user_data          = var.user_data
   volume_ids         = var.volume_ids
 
