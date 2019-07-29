@@ -23,6 +23,11 @@ resource "digitalocean_droplet" "droplet" {
     private_key = local.ssh_private_key
   }
 
+  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
+  lifecycle {
+    #lifecycle_hack
+  }
+
   # https://www.packer.io/docs/other/debugging.html#issues-installing-ubuntu-packages
   provisioner "remote-exec" {
     script = "${path.module}/scripts/wait-for-init.sh"
@@ -44,11 +49,7 @@ resource "digitalocean_droplet" "droplet" {
     command = "sleep 10"
   }
 
-  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
-  # @TODO: This exists as a hack to allow lifecycle to be passed into the module
-  # - Error: Reserved block type name in module block
-  # - The block type name "lifecycle" is reserved for use by Terraform in a future
-  lifecycle {
-    #lifecycle_hack
+  provisioner "remote-exec" {
+    scripts = var.scripts
   }
 }

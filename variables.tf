@@ -90,6 +90,12 @@ variable "fallback_ssh_keypair" {
   default     = true
 }
 
+variable "scripts" {
+  type        = list(string)
+  description = "List of provisioner scripts filepaths to execute on the remote host"
+  default     = []
+}
+
 # Hacks to access values we're not supposed to be able to
 variable "hack" {
   type = map

@@ -24,6 +24,13 @@ resource "digitalocean_droplet" "droplet_hack_create_before_destroy" {
     private_key = local.ssh_private_key
   }
 
+  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
+  lifecycle {
+    create_before_destroy = true
+    prevent_destroy       = false
+
+  }
+
   # https://www.packer.io/docs/other/debugging.html#issues-installing-ubuntu-packages
   provisioner "remote-exec" {
     script = "${path.module}/scripts/wait-for-init.sh"
@@ -45,14 +52,8 @@ resource "digitalocean_droplet" "droplet_hack_create_before_destroy" {
     command = "sleep 10"
   }
 
-  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
-  # @TODO: This exists as a hack to allow lifecycle to be passed into the module
-  # - Error: Reserved block type name in module block
-  # - The block type name "lifecycle" is reserved for use by Terraform in a future
-  lifecycle {
-    create_before_destroy = true
-    prevent_destroy       = false
-
+  provisioner "remote-exec" {
+    scripts = var.scripts
   }
 }
 
@@ -81,6 +82,13 @@ resource "digitalocean_droplet" "droplet_hack_prevent_destroy" {
     private_key = local.ssh_private_key
   }
 
+  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
+  lifecycle {
+    create_before_destroy = false
+    prevent_destroy       = true
+
+  }
+
   # https://www.packer.io/docs/other/debugging.html#issues-installing-ubuntu-packages
   provisioner "remote-exec" {
     script = "${path.module}/scripts/wait-for-init.sh"
@@ -102,14 +110,8 @@ resource "digitalocean_droplet" "droplet_hack_prevent_destroy" {
     command = "sleep 10"
   }
 
-  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
-  # @TODO: This exists as a hack to allow lifecycle to be passed into the module
-  # - Error: Reserved block type name in module block
-  # - The block type name "lifecycle" is reserved for use by Terraform in a future
-  lifecycle {
-    create_before_destroy = false
-    prevent_destroy       = true
-
+  provisioner "remote-exec" {
+    scripts = var.scripts
   }
 }
 
@@ -138,6 +140,13 @@ resource "digitalocean_droplet" "droplet_hack_create_before_destroy_prevent_dest
     private_key = local.ssh_private_key
   }
 
+  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
+  lifecycle {
+    create_before_destroy = true
+    prevent_destroy       = true
+
+  }
+
   # https://www.packer.io/docs/other/debugging.html#issues-installing-ubuntu-packages
   provisioner "remote-exec" {
     script = "${path.module}/scripts/wait-for-init.sh"
@@ -159,14 +168,8 @@ resource "digitalocean_droplet" "droplet_hack_create_before_destroy_prevent_dest
     command = "sleep 10"
   }
 
-  # https://www.terraform.io/docs/configuration/resources.html#lifecycle-lifecycle-customizations
-  # @TODO: This exists as a hack to allow lifecycle to be passed into the module
-  # - Error: Reserved block type name in module block
-  # - The block type name "lifecycle" is reserved for use by Terraform in a future
-  lifecycle {
-    create_before_destroy = true
-    prevent_destroy       = true
-
+  provisioner "remote-exec" {
+    scripts = var.scripts
   }
 }
 
