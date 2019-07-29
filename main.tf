@@ -1,6 +1,6 @@
 locals {
   count       = max(var.resource_count, 0)
-  name        = format("%s-%02d", var.name, count.index + var.count_start)
+  name        = format("%s-%s-%02d", var.name, var.region, count.index + var.count_start)
   private_key = lookup(var.connection, "private_key", "")
 
   # Whether or not we should be generating a tls_private_key for connection
