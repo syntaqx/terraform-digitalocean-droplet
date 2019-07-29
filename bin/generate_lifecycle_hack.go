@@ -76,10 +76,6 @@ func main() {
 	}
 
 	for _, targets := range perm(lifecycles) {
-		if _, err := f.WriteString("\n# ==========================================================\n"); err != nil {
-			panic(err)
-		}
-
 		hack := strings.Replace(tmpl, `"droplet"`, fmt.Sprintf(`"droplet_hack_%s"`, strings.Join(targets, "_")), -1)
 		count := ""
 
@@ -97,7 +93,7 @@ func main() {
 		hack = strings.Replace(hack, `local.count_minus_hacks`, fmt.Sprintf("%s ? local.count : 0", count), -1)
 		hack = strings.Replace(hack, `#lifecycle_hack`, "", -1)
 
-		if _, err = f.WriteString(hack); err != nil {
+		if _, err = f.WriteString(fmt.Sprintf("%s\n", hack)); err != nil {
 			panic(err)
 		}
 	}
