@@ -91,7 +91,7 @@ func main() {
 			}
 
 			count = fmt.Sprintf(`%s%slookup(var.hack, "%s", false) == %t`, count, appender, cycle, ok)
-			hack = strings.Replace(hack, "#lifecycle_hack", fmt.Sprintf("%s = %t\n#lifecycles", cycle, ok), -1)
+			hack = strings.Replace(hack, "#lifecycle_hack", fmt.Sprintf("%s = %t\n#lifecycle_hack", cycle, ok), -1)
 		}
 
 		hack = strings.Replace(hack, `local.count_minus_hacks`, fmt.Sprintf("%s ? local.count : 0", count), -1)

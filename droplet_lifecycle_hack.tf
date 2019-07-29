@@ -53,7 +53,8 @@ resource "digitalocean_droplet" "droplet_hack_create_before_destroy" {
   # - The block type name "lifecycle" is reserved for use by Terraform in a future
   lifecycle {
     create_before_destroy = true
-#lifecycles
+prevent_destroy = false
+
   }
 }
 
@@ -110,7 +111,8 @@ resource "digitalocean_droplet" "droplet_hack_prevent_destroy" {
   # - The block type name "lifecycle" is reserved for use by Terraform in a future
   lifecycle {
     create_before_destroy = false
-#lifecycles
+prevent_destroy = true
+
   }
 }
 
@@ -167,6 +169,7 @@ resource "digitalocean_droplet" "droplet_hack_create_before_destroy_prevent_dest
   # - The block type name "lifecycle" is reserved for use by Terraform in a future
   lifecycle {
     create_before_destroy = true
-#lifecycles
+prevent_destroy = true
+
   }
 }
